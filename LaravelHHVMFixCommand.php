@@ -96,7 +96,7 @@ class LaravelHHVMFixCommand extends Command
                                      * "Any strings that are not set will simply be skipped."
                                      * [http://php.net/manual/en/function.compact.php]
                                      */
-                                    $newParams[] = sprintf("'%s' => isset($%s) ? $%s : null", $param, $param);
+                                    $newParams[] = sprintf("'%s' => isset($%s) ? $%s : null", $param, $param, $param);
                                 }
 
                                 // build a replacement string: array ('n' => $n[, ...])
