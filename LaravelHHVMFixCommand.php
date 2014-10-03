@@ -91,7 +91,12 @@ class LaravelHHVMFixCommand extends Command
                                 // build a new param string
                                 $newParams = array();
                                 foreach ($params as $param) {
-                                    $newParams[] = sprintf("'%s' => $%s", $param, $param);
+                                    /**
+                                     * Checking if each variable set is necessary due this statement on PHP's compact function doc page:
+                                     * "Any strings that are not set will simply be skipped."
+                                     * [http://php.net/manual/en/function.compact.php]
+                                     */
+                                    $newParams[] = sprintf("'%s' => isset($%s) ? $%s : null", $param, $param);
                                 }
 
                                 // build a replacement string: array ('n' => $n[, ...])
